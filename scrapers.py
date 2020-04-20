@@ -46,7 +46,7 @@ def raw_scraper(url, memoize):
         metadata = {
             "url": url,
             "elapsed": time.time() - t1,
-            "raw": "newspaper",
+            "scraper": "raw",
             'status': 503
         }
         return text, metadata
@@ -90,6 +90,8 @@ def newspaper_scraper(url, memoize):
 
 def bs4_scraper(url, memoize):
     t1 = time.time()
+    if url[ : 3 ] == 'www':
+        url = 'http://' + url
 
     try:
         article = newspaper.Article(url, fetch_images=False, memoize_articles=memoize)
@@ -101,12 +103,21 @@ def bs4_scraper(url, memoize):
         # newspaper_scraper
         text = " ".join(text)
     except:
-        return None, None
+        text = None
+        metadata = {
+            "url": url,
+            "word_count": 0,
+            "elapsed": time.time() - t1,
+            "scraper": "bs4",
+            'status': 503
+        }
+        return text, metadata
 
     metadata = {
         "url": url,
         "word_count": count,
         "elapsed": time.time() - t1,
         "scraper": "bs4",
+        'status': 200
     }
     return text, metadata
