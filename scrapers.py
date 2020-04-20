@@ -40,11 +40,16 @@ def raw_scraper(url, memoize):
         html = cleaner.clean_html(html)
         article.parse()
     except:
-        return None, None
-    if article.text == "":
-        return None, None
+        text = None
+        metadata = {
+            "url": url,
+            "elapsed": time.time() - t1,
+            "raw": "newspaper",
+            'status': 503
+        }
+        return text, metadata
 
-    metadata = {"url": url, "elapsed": time.time() - t1, "scraper": "raw"}
+    metadata = { "url": url, "elapsed": time.time() - t1, "scraper": "raw", 'status': 200 }
     return html, metadata
 
 
