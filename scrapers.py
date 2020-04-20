@@ -29,6 +29,8 @@ def find_and_filter_tag(tag, soup):
 
 def raw_scraper(url, memoize):
     t1 = time.time()
+    if url[ : 3 ] == 'www':
+        url = 'http://' + url
 
     try:
         cleaner = Cleaner()
@@ -55,6 +57,8 @@ def raw_scraper(url, memoize):
 
 def newspaper_scraper(url, memoize):
     t1 = time.time()
+    if url[ : 3 ] == 'www':
+        url = 'http://' + url
 
     try:
         article = newspaper.Article(url, fetch_images=False, memoize_articles=memoize)
