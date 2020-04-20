@@ -146,8 +146,9 @@ def download(
         scrape = raw_scraper
 
     text, meta = scrape(url, memoize)
-    # if text is None or text.strip() == "":
-    #     return ("", "", fid, uid)
+    if text is None or text.strip() == "":
+        text = 'No text.'
+        # return ("", "", fid, uid)
 
     if save_uncompressed:
         month = extract_month(args.url_file)
