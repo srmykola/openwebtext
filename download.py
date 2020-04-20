@@ -206,6 +206,7 @@ def get_state(month, out_dir):
     latest_cid = 0
     completed_uids = set()
     state_fp = op.join("state", "{}.txt".format(month))
+    print( '>>> state_fp: {}'.fromat(state_fp))
     if op.isfile(state_fp):
         archives = glob(op.join(out_dir, "{}-*".format(month)))
         latest_cid = max([int(a.split("-")[-1].split("_")[0]) for a in archives])
