@@ -210,6 +210,7 @@ def get_state(month, out_dir):
     print( '>>> state_fp: {}'.format( state_fp ))
     if op.isfile(state_fp):
         archives = glob(op.join(out_dir, "{}-*".format(month)))
+        print( '>>> op.join(out_dir, "{}-*".format(month)): {}'.format( op.join( out_dir, "{}-*".format( month ))))
         print( '>>> archives: {}'.format( archives ))
         latest_cid = max([int(a.split("-")[-1].split("_")[0]) for a in archives])
         with open(state_fp, "r") as fh:
