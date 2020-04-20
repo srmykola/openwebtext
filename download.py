@@ -126,9 +126,9 @@ def vet_link(link):
 
 def download(
     url_entry,
-    scraper=args.scraper,
-    save_uncompressed=args.save_uncompressed,
-    memoize=args.scraper_memoize,
+    scraper = args.scraper,
+    save_uncompressed = args.save_uncompressed,
+    memoize = args.scraper_memoize,
 ):
     uid, url = url_entry
     url = url.strip()
@@ -146,8 +146,8 @@ def download(
         scrape = raw_scraper
 
     text, meta = scrape(url, memoize)
-    if text is None or text.strip() == "":
-        return ("", "", fid, uid)
+    # if text is None or text.strip() == "":
+    #     return ("", "", fid, uid)
 
     if save_uncompressed:
         month = extract_month(args.url_file)

@@ -58,13 +58,23 @@ def newspaper_scraper(url, memoize):
         text = article.text
         count = len(text.split())
     except:
-        return None, None
+        text = None
+        metadata = {
+            "url": url,
+            "word_count": 0,
+            "elapsed": time.time() - t1,
+            "scraper": "newspaper",
+            'status': 503
+        }
+        return text, metadata
+
 
     metadata = {
         "url": url,
         "word_count": count,
         "elapsed": time.time() - t1,
         "scraper": "newspaper",
+        'status': 200
     }
     return text, metadata
 
