@@ -205,10 +205,12 @@ def get_state(month, out_dir):
     mkdir("state")
     latest_cid = 0
     completed_uids = set()
-    state_fp = op.join("state", "{}.txt".format(month))
-    print( '>>> state_fp: {}'.format(state_fp))
+    state_fp = op.join("./state", "{}.txt".format(month))
+    print( '>>> out_dir: {}'.format( out_dir ))
+    print( '>>> state_fp: {}'.format( state_fp ))
     if op.isfile(state_fp):
         archives = glob(op.join(out_dir, "{}-*".format(month)))
+        print( '>>> archives: {}'.format( archives ))
         latest_cid = max([int(a.split("-")[-1].split("_")[0]) for a in archives])
         with open(state_fp, "r") as fh:
             completed_uids = set(int(i.strip()) for i in list(fh))
